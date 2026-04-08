@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package com.shortcutfightclubs.statement;
+
+option java_package = "com.shortcutfightclubs.statement.grpc";
+option java_outer_classname = "StatementServiceProto";
+
+service StatementService {
+  rpc RecordAttendance (RecordAttendanceRequest) returns (RecordAttendanceResponse);
+  rpc RecordContestResult (RecordContestResultRequest) returns (RecordContestResultResponse);
+  rpc GetStudentProgress (GetStudentProgressRequest) returns (GetStudentProgressResponse);
+}
+
+message RecordAttendanceRequest {
+  string lesson_id = 1;
+  repeated string participant_ids = 2;
+}
+
+message RecordAttendanceResponse {
+  bool success = 1;
+}
+
+message RecordContestResultRequest {
+  string contest_id = 1;
+  repeated string participant_ids = 2;
+}
+
+message RecordContestResultResponse {
+  bool success = 1;
+}
+
+message GetStudentProgressRequest {
+  string student_id = 1;
+}
+
+message GetStudentProgressResponse {
+  string student_id = 1;
+  int32 lessons_attended = 2;
+  int32 contests_participated = 3;
+}
